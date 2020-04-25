@@ -528,7 +528,7 @@ class cascade_forest:
                     clf.fit(x_train, y_train)
                     joblib.dump(
                         clf,
-                        os.getcwd() + "/model/{}_{}th_level.pkl".format(name, level_id),
+                        os.getcwd() + "/model2/{}_{}th_level.pkl".format(name, level_id),
                     )
                 x_train = self.next_input(
                     x_train,
@@ -546,7 +546,7 @@ class cascade_forest:
                             joblib.dump(
                                 clf,
                                 os.getcwd()
-                                + "/model/{}_{}th_level_{}_grade.pkl".format(
+                                + "/model2/{}_{}th_level_{}_grade.pkl".format(
                                     name, level_id, grade_id + 1
                                 ),
                             )
@@ -565,7 +565,7 @@ class cascade_forest:
                             joblib.dump(
                                 clf,
                                 os.getcwd()
-                                + "/model/{}_{}th_level_{}_grade.pkl".format(
+                                + "/model2/{}_{}th_level_{}_grade.pkl".format(
                                     name, level_id, grade_id + 1
                                 ),
                             )
@@ -593,7 +593,7 @@ class cascade_forest:
                     temp2.append(
                         joblib.load(
                             os.getcwd()
-                            + "/model/{}_{}th_level.pkl".format(name, level_id)
+                            + "/model2/{}_{}th_level.pkl".format(name, level_id)
                         )
                     )
 
@@ -608,7 +608,7 @@ class cascade_forest:
                             temp3.append(
                                 joblib.load(
                                     os.getcwd()
-                                    + "/model/{}_{}th_level_{}_grade.pkl".format(
+                                    + "/model2/{}_{}th_level_{}_grade.pkl".format(
                                         name, level_id, grade_id + 1
                                     )
                                 )
@@ -622,7 +622,7 @@ class cascade_forest:
                             temp4.append(
                                 joblib.load(
                                     os.getcwd()
-                                    + "/model/{}_{}th_level_{}_grade.pkl".format(
+                                    + "/model2/{}_{}th_level_{}_grade.pkl".format(
                                         name, level_id, grade_id + 1
                                     )
                                 )
