@@ -57,9 +57,13 @@ layer10.add(**c)
 
 from Cascade_Forest.Cascade_Forest import cascade_forest
 
-"Initialize cascade forest structure "
-cs1 = cascade_forest(random_state=None, n_jobs=-1)
-cs2 = cascade_forest(random_state=None, n_jobs=-1)
+
+
+"Initialize cascade forest structure, you want save the model generated in the validation step into the 'yeast' directory"
+
+cs1 = cascade_forest(random_state=None, n_jobs=-1, directory='yeast4', metrics='accuracy')
+cs2 = cascade_forest(random_state=None, n_jobs=-1, directory='yeast4', metrics='accuracy')
+cs3 = cascade_forest(random_state=None, n_jobs=-1, directory='yeast4', metrics='accuracy')
 
 "Add each layer to cascade forest structure"
 cs1.add(layer1)
@@ -84,6 +88,30 @@ cs2.add(layer8)
 cs2.add(layer9)
 cs2.add(layer10)
 
+cs3.add(layer1)
+cs3.add(layer2)
+cs3.add(layer3)
+cs3.add(layer4)
+cs3.add(layer5)
+cs3.add(layer6)
+cs3.add(layer7)
+cs3.add(layer8)
+cs3.add(layer9)
+cs3.add(layer10)
+
+
+
+
+
+
+#################  Cascade Forest   ###################
+cs3.fit([X_train], y_train)
+cs3.predict([X_test])
+score = cs3.score(y_test)
+print("cascade forest's F1 :{:.2f} %".format(score * 100))
+#######################################################3
+
+
 import networkx as nx
 
 "Read the graph input"
@@ -93,9 +121,11 @@ from Cascade_Forest.Multi_grained_scanning import scanner
 
 "Generate the scanner"
 sc1 = scanner(stratify=True, clf_set=(clf1, clf2), n_splits=3, random_state=None,
-              walk_length=(24, 48, 96), num_walks=2, p=100, q=100, scale=(80, 56, 8))
+              walk_length=(24, 48, 96), num_walks=1, p=100, q=100, scale=(80, 56, 8))
 
 sc2 = scanner(window_size=(24, 48, 96), stratify=True, clf_set=(clf1, clf2), n_splits=3, random_state=None)
+
+################## graph-based gcForest ########################
 
 "Using the graph-based approach to scan the data"
 transformed_train1, transformed_test1 = sc1.graph_embedding(G1, X_train, y_train, X_test)
@@ -105,10 +135,11 @@ cs1.fit(transformed_train1, y_train)
 cs1.predict(transformed_test1)
 "The accuracy score"
 score = cs1.score(y_test)
-print("Graph_based Deep Forest's accuracy :{:.2f} %".format(score * 100))
+print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
+#################################################################
 
-
-"Using the window slicing approach to scan the data"
+###############   original gcForest  ############################
+"Using the window sliding approach to scan the data"
 transformed_train2, transformed_test2 = sc2.transform_feature(X_train, y_train, X_test)
 "Training"
 cs2.fit(transformed_train2, y_train)
@@ -116,4 +147,4 @@ cs2.fit(transformed_train2, y_train)
 cs2.predict(transformed_test2)
 "The accuracy score"
 score = cs2.score(y_test)
-print("window slicing Deep Forest's accuracy :{:.2f} %".format(score * 100))
+print("window sliding gcForest's accuracy :{:.2f} %".format(score * 100))
