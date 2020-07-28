@@ -32,6 +32,8 @@ class scanner:
         n_features = x_train.shape[1]
         subset_train = []
         subset_test = []
+        column_index = []
+        #window_path = []
         if type(each_window_size) is int:
             assert len(x_train.shape) == 2, "the shape of x_train must be 2d!"
             assert len(x_test.shape) == 2, "the shape of x_test must be 2d!"
@@ -43,8 +45,11 @@ class scanner:
                 end_index = [i for i in range(each_window_size - 1, n_features)]
 
             for i, j in zip(start_index, end_index):
-                subset_train.append(x_train[:, i : j + 1])
-                subset_test.append(x_test[:, i : j + 1])
+                # subset_train.append(x_train[:, i : j + 1])
+                # subset_test.append(x_test[:, i : j + 1])
+                #window_path.append(list(range(i, j+1)))
+                column_index.append(list(np.arange(i, j+1)))
+
         else:
             assert len(x_train.shape) == 3, "the shape of x_train must be 3d!"
             assert len(x_test.shape) == 3, "the shape of x_test must be 3d!"
@@ -85,7 +90,8 @@ class scanner:
                         )
                     subset_test.append(pool_test)
 
-        return subset_train, subset_test
+        #return subset_train, subset_test,window_path
+        return column_index
 
     def get_class_vector(self, clf, x, y):
 
@@ -123,15 +129,27 @@ class scanner:
         transformed_train = []
         transformed_test = []
 
+        # window_path = []
         for each_window_size in self.window_size:
-            subset_train, subset_test = self.slicing(x_train, x_test, each_window_size)
+            #subset_train, subset_test, window_temp_path = self.slicing(x_train, x_test, each_window_size)
+            column_index = self.slicing(x_train, x_test, each_window_size)
             class_vector_train = []
             class_vector_test = []
 
+            #window_path.append(window_temp_path)
+
             for clf in self.clf_set:
-                for each_subset_train, each_subset_test in zip(
-                    subset_train, subset_test
-                ):
+
+                for i in range(0, len(column_index)):
+
+                    each = column_index[i]
+                    column_lst = [int(i) for i in each]
+                    each_subset_train = x_train[:, column_lst]
+                    each_subset_test = x_test[:, column_lst]
+
+                # for each_subset_train, each_subset_test in zip(
+                #     subset_train, subset_test
+                # ):
 
                     class_vector_array, clf = self.get_class_vector(
                         clf, np.array(each_subset_train), np.array(y_train)
@@ -156,7 +174,7 @@ class scanner:
             num_walks=num_walks,
             p=self.p,
             q=self.q,
-            workers=1,
+            workers=2,
         )
 
         column_index = model.get_path()[:scale]
@@ -167,12 +185,14 @@ class scanner:
 
         transformed_train = []
         transformed_test = []
-
+        path = []
         for each_walk_length, each_scale in zip(self.walk_length, self.scale):
 
             column_index = self.get_subset(
                 G, each_walk_length, self.num_walks, each_scale
             )
+
+            path.append(column_index)
 
             class_vector_train = []
             class_vector_test = []

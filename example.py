@@ -87,7 +87,7 @@ cs2.add(layer10)
 import networkx as nx
 
 "Read the graph input"
-G1 = nx.read_edgelist('edgelist.txt', create_using=nx.Graph(), nodetype=None, data=[('weight', int)])
+G1 = nx.read_edgelist('yeast_edge_bnlearn.txt', create_using=nx.Graph(), nodetype=None, data=[('weight', int)])
 
 from Cascade_Forest.Multi_grained_scanning import scanner
 

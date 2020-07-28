@@ -34,6 +34,7 @@ class cascade_forest:
         num_layers=10,
         test_size=0.2,
         n_spilts=3,
+        directory="model"
     ):
         """
 
@@ -74,6 +75,7 @@ class cascade_forest:
         self.Accu = []
         " record the grade"
         self.grade = 0
+        self.directory = directory
 
     def add(self, layer: Layer):
         """
@@ -366,6 +368,17 @@ class cascade_forest:
             from sklearn.metrics import matthews_corrcoef
 
             score = matthews_corrcoef(y_true=y_estimating, y_pred=pred)
+        if self.metrics == 'F1 score binary':
+            from sklearn.metrics import f1_score
+
+            score1 = f1_score(y_true=y_estimating, y_pred=pred, average='binary', pos_label=0)
+            score2 = f1_score(y_true=y_estimating, y_pred=pred, average='binary', pos_label=1)
+            score = (score1+score2)/2
+
+        if self.metrics == 'F1 score weighted':
+            from sklearn.metrics import f1_score
+
+            score = f1_score(y_true=y_estimating, y_pred=pred, average='weighted')
 
         return score
 
@@ -457,7 +470,7 @@ class cascade_forest:
         )
 
         while (
-            current_accu - best_accu >= self.tolerance and self.record < self.num_layers
+            current_accu - best_accu > self.tolerance and self.record < self.num_layers
         ):
 
             self.grade = grade
@@ -528,7 +541,7 @@ class cascade_forest:
                     clf.fit(x_train, y_train)
                     joblib.dump(
                         clf,
-                        os.getcwd() + "/model2/{}_{}th_level.pkl".format(name, level_id),
+                        os.getcwd() + "/{}/{}_{}th_level.pkl".format(self.directory, name, level_id),
                     )
                 x_train = self.next_input(
                     x_train,
@@ -546,8 +559,8 @@ class cascade_forest:
                             joblib.dump(
                                 clf,
                                 os.getcwd()
-                                + "/model2/{}_{}th_level_{}_grade.pkl".format(
-                                    name, level_id, grade_id + 1
+                                + "/{}/{}_{}th_level_{}_grade.pkl".format(
+                                    self.directory, name, level_id, grade_id + 1
                                 ),
                             )
                         x_train = self.next_input(
@@ -565,8 +578,8 @@ class cascade_forest:
                             joblib.dump(
                                 clf,
                                 os.getcwd()
-                                + "/model2/{}_{}th_level_{}_grade.pkl".format(
-                                    name, level_id, grade_id + 1
+                                + "/{}/{}_{}th_level_{}_grade.pkl".format(
+                                   self.directory, name, level_id, grade_id + 1
                                 ),
                             )
                         x_train = self.next_input(
@@ -593,7 +606,7 @@ class cascade_forest:
                     temp2.append(
                         joblib.load(
                             os.getcwd()
-                            + "/model2/{}_{}th_level.pkl".format(name, level_id)
+                            + "/{}/{}_{}th_level.pkl".format(self.directory, name, level_id)
                         )
                     )
 
@@ -608,8 +621,8 @@ class cascade_forest:
                             temp3.append(
                                 joblib.load(
                                     os.getcwd()
-                                    + "/model2/{}_{}th_level_{}_grade.pkl".format(
-                                        name, level_id, grade_id + 1
+                                    + "/{}/{}_{}th_level_{}_grade.pkl".format(
+                                        self.directory, name, level_id, grade_id + 1
                                     )
                                 )
                             )
@@ -622,8 +635,8 @@ class cascade_forest:
                             temp4.append(
                                 joblib.load(
                                     os.getcwd()
-                                    + "/model2/{}_{}th_level_{}_grade.pkl".format(
-                                        name, level_id, grade_id + 1
+                                    + "/{}/{}_{}th_level_{}_grade.pkl".format(
+                                        self.directory, name, level_id, grade_id + 1
                                     )
                                 )
                             )
@@ -696,9 +709,22 @@ class cascade_forest:
 
         if self.metrics == "accuracy":
             score = accuracy_score(y_true=y_validate, y_pred=pred)
+
         if self.metrics == "MCC":
             from sklearn.metrics import matthews_corrcoef
-
             score = matthews_corrcoef(y_true=y_validate, y_pred=pred)
+
+        if self.metrics == 'F1 score':
+
+            from sklearn.metrics import f1_score
+            score1 = f1_score(y_true=y_validate, y_pred=pred, average='binary', pos_label=0)
+            score2 = f1_score(y_true=y_validate, y_pred=pred, average='binary', pos_label=1)
+            score = (score1 + score2) / 2
+
+        if self.metrics == 'F1 score weighted':
+            from sklearn.metrics import f1_score
+
+            score = f1_score(y_true=y_validate, y_pred=pred, average='weighted')
+
 
         return score
