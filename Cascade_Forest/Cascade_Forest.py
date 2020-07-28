@@ -714,7 +714,7 @@ class cascade_forest:
             from sklearn.metrics import matthews_corrcoef
             score = matthews_corrcoef(y_true=y_validate, y_pred=pred)
 
-        if self.metrics == 'F1 score':
+        if self.metrics == 'F1 score binary':
 
             from sklearn.metrics import f1_score
             score1 = f1_score(y_true=y_validate, y_pred=pred, average='binary', pos_label=0)
