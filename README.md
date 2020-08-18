@@ -3,13 +3,11 @@ Master thesis, Junjie Zhang
 ## Introduction
 We propose graph-based gcForest, which is an ensemble learning framework that is capable of scanning on a graph. In graph-based gcForest, inspired by the second-order random walk in Node2Vec, we propose a non-linear graph-based Multi-Grained Scanning method, which provides us with the flexibility of feature representation based on the intrinsic graph structure.
 
-<img src="https://https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/cascade%20structure.PNG" width="100" height="100">
-
-![Cascade Forest](https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/cascade%20structure.PNG)(width="400" height="790")
-![Sliding window based](https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/multi-grained.PNG){:height="50%" width="50%"}
-![gcForest ](https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/overall.PNG){:height="50%" width="50%"}
-![Graph-based](https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/graph-based_silding.PNG){:height="50%" width="50%"}
-![overall_graph-based gcForest](https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/overall_graphGC.png){:height="50%" width="50%"}
+<img src="https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/cascade_structure.PNG" width="100" height="100">
+<img2 src="https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/multi-grained.PNG" width="100" height="100">
+<img3 src="https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/overall.PNG" width="100" height="100">
+<img4 src="https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/graph-based_silding.PNG" width="100" height="100">
+<img5 src="https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/images/overall_graphGC.png" width="100" height="100">
 
 
 
