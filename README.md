@@ -3,9 +3,8 @@ Graph based gcForest for master thesis,ongoing project
 # Product Name
 > Short blurb about what your product does.
 
-[![NPM Version][npm-image]][npm-url]
-[![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
+![npm-image](https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/graph-based_silding.PNG)
+
 
 One to two paragraph statement about your product and what it does.
 
