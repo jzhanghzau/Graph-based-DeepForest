@@ -1,9 +1,8 @@
 # Graph-based Deep Forest (Graph-based gcForest)
-Graph based gcForest for master thesis,ongoing project
-# Product Name
-> Short blurb about what your product does.
 
-![npm-image](https://github.com/jzhanghzau/Graph-based-DeepForest/blob/master/graph-based_silding.PNG)
+We propose graph-based gcForest, which is an ensemble learning framework that is capable of scanning on a graph. In graph-based gcForest, inspired by the second-order random walk in Node2Vec, we propose a non-linear graph-based Multi-Grained Scanning method, which provides us with the flexibility of feature representation based on the intrinsic graph structure.
+
+![npm-image]()
 
 
 One to two paragraph statement about your product and what it does.
