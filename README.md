@@ -1,4 +1,4 @@
-# Graph_based_Deep-Forest
+# Graph-based Deep Forest (Graph-based gcForest)
 Graph based gcForest for master thesis,ongoing project
 # Product Name
 > Short blurb about what your product does.
