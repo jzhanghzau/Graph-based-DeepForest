@@ -134,7 +134,7 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
     2. `num_walks`:  Number of walks per node, `default:1`.
     3. `p`: Return hyper parameter, `default:1`.
     4. `q`: Inout parameter, `default:1`.
-    5: `scale`: The number of generated walks you need. Suppose there are 100 features in your dataset, but the corresponding graph structure has only 90 nodes. With `num_walks` equal to 1, the scanner will only generate 90 walks. If you need 100 walks, you have to set `num_walks` to 2, thus it will generate 200 walks, then set `scale` to 100 and will get 100 walks.
+    5. `scale`: The number of generated walks you need. Suppose there are 100 features in your dataset, but the corresponding graph structure has only 90 nodes.             With `num_walks` equal to 1, the scanner will only generate 90 walks. If you need 100 walks, you have to set `num_walks` to 2, thus it will generate 200             walks, then set `scale` to 100 and will get 100 walks.
     6. `clf_set`: The classifiers used to transform the original input features
 
 
