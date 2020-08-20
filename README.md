@@ -123,19 +123,18 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
     4. `directory`: The folder where the model generated during the validation step is saved.
     5. `test_size`: How much of the train_data will be used as test data in validation step, `default:0.2`.
   
-- ### `Sliding window based gcForest`:
-    
-    
-    
-    5. `p`: Return hyper parameter (default: 1)
-    6. `q`: Inout parameter (default: 1)
-    7. `weight_key`: On weighted graphs, this is the key for the weight attribute (default: 'weight')
-    8. `workers`: Number of workers for parallel execution (default: 1)
-    9. `sampling_strategy`: Node specific sampling strategies, supports setting node specific 'q', 'p', 'num_walks' and 'walk_length'.
-        Use these keys exactly. If not set, will use the global ones which were passed on the object initialization`
-    10. `quiet`: Boolean controlling the verbosity. (default: False)
-    11. `temp_folder`: String path pointing to folder to save a shared memory copy of the graph - Supply when working on graphs that are too big to fit in memory during algorithm execution.
+- ### `Sliding window based Multi-Grained Scanning`:
 
-- ### `sliding window based Multi-Grained Scanning`:
+    1. `window_size`: The sliding window size, `default:(1,1)`
+    2. `clf_set`: The classifiers used to transform the original input features.
   
-- ### `Graph-based Multi-Grained Scanning`:
+- ### `Graph-based Multi-Grained Scanning`:   
+      
+    1. `walk_length`: Number of nodes in each walk,`default:(1,1)`.
+    2. `num_walks`:  Number of walks per node, `default:1`.
+    3. `p`: Return hyper parameter, `default:1`.
+    4. `q`: Inout parameter, `default:1`.
+    5: `scale`: The number of generated walks you need. Suppose there are 100 features in your dataset, but the corresponding graph structure has only 90 nodes. With `num_walks` equal to 1, the scanner will only generate 90 walks. If you need 100 walks, you have to set `num_walks` to 2, thus it will generate 200 walks, then set `scale` to 100 and will get 100 walks.
+    6. `clf_set`: The classifiers used to transform the original input features
+
+
