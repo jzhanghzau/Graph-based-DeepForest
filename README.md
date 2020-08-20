@@ -130,7 +130,7 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
   
 - ### `Graph-based Multi-Grained Scanning`:   
       
-    1. `walk_length`: Number of nodes in each walk,`default:(1,1)`.
+    1. `walk_length`: Number of nodes in each walk, `default:(1,1)`.
     2. `num_walks`:  Number of walks per node, `default:1`.
     3. `p`: Return hyper parameter, `default:1`.
     4. `q`: Inout parameter, `default:1`.
@@ -138,12 +138,18 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
     6. `clf_set`: The classifiers used to transform the original input features.
     
     
-## Methods
 
+## Methods
 - ### `Layer`:
-      1. `add(**X)`: Add a classifier set into layer obeject. X is a classifier set, such as `X = {"crf1": clf1, "crf2": clf2}`.
+    1. `add(**X)`: Add a classifier set into layer obeject. X is a classifier set, such as `X = {"crf1": clf1, "crf2": clf2}`.
+  
+- ### `Cascade Forest`:
+    1. `add(X)`: Add a layer obeject into Cascade Forest. X is a layer object.
+    2. `fit([X_train], y_train)`: Build a Cascade Forest from the training set. 
+    3. `predict([X_test])`: Predict class for X_test.
+    4. `score`: Return the mean accuracy on the given test data and labels.
 - ### `Cascade Structure`:
-      1. `add()`:
+    
     
 
 
