@@ -125,7 +125,7 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
   
 - ### `Sliding window based Multi-Grained Scanning`:
 
-    1. `window_size`: The sliding window size, `default:(1,1)`
+    1. `window_size`: The sliding window size, `default:(1,1)`.
     2. `clf_set`: The classifiers used to transform the original input features.
   
 - ### `Graph-based Multi-Grained Scanning`:   
@@ -135,6 +135,14 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
     3. `p`: Return hyper parameter, `default:1`.
     4. `q`: Inout parameter, `default:1`.
     5. `scale`: The number of generated walks you need. Suppose there are 100 features in your dataset, but the corresponding graph structure has only 90 nodes.             With `num_walks` equal to 1, the scanner will only generate 90 walks. If you need 100 walks, you have to set `num_walks` to 2, thus it will generate 200             walks, then set `scale` to 100 and will get 100 walks.
-    6. `clf_set`: The classifiers used to transform the original input features
+    6. `clf_set`: The classifiers used to transform the original input features.
+    
+    
+## Methods
+- ### `Layer`:
+       1.  `add(**X)`: Add a classifier set into layer obeject. X is a classifier set, such as `X = {"crf1": clf1, "crf2": clf2}`.
+- ### `Cascade Structure`:
+       1. `add()`:
+    
 
 
