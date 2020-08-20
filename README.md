@@ -151,11 +151,11 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
 
 - ### `Sliding window based scanner`:
    
-    1. `transform_feature(X_train, y_train, X_test)`: Add a layer obeject into Cascade Forest. X is a layer object.
+    1. `transform_feature(X_train, y_train, X_test)`: Transform the X_train, X_test by using the sliding window based scanner.
 
 - ### `Graph-based based scanner`:
    
-    1. `graph_embedding(G1, X_train, y_train, X_test)`: Add a layer obeject into Cascade Forest. X is a layer object.
+    1. `graph_embedding(G1, X_train, y_train, X_test)`: `G1` argument has to be networkx graphs. Transform the X_train, X_test by using the graph-based scanner.
 
 
 
