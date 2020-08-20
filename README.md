@@ -117,10 +117,16 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
 ```
 ## Parameters
 - ### `Cascade Structure`:
-    1. `metrics`: the metrics for validation step, decide how does the cascade structure grow, `{'accuracy', 'MCC', 'F1 score binary', 'F1 score weighted'},       default: accuracy`.
-    2. `dimensions`: Embedding dimensions (default: 128)
-    3. `walk_length`: Number of nodes in each walk (default: 80)
-    4. `num_walks`: Number of walks per node (default: 10)
+    1. `metrics`: The metrics for validation step, decide how does the cascade structure grow, `{'accuracy', 'MCC', 'F1 score binary', 'F1 score weighted'},       default: accuracy`.
+    2. `tolerance`: How much improvement of metrics will lead the cascade structure grow deeper, `default:0`.
+    3. `stratify`: For train_test_spilt and k-fold cross validation, `default:True`.
+    4. `directory`: The folder where the model generated during the validation step is saved.
+    5. `test_size`: How much of the train_data will be used as test data in validation step, `default:0.2`.
+  
+- ### `Sliding window based gcForest`:
+    
+    
+    
     5. `p`: Return hyper parameter (default: 1)
     6. `q`: Inout parameter (default: 1)
     7. `weight_key`: On weighted graphs, this is the key for the weight attribute (default: 'weight')
