@@ -147,8 +147,19 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
     1. `add(X)`: Add a layer obeject into Cascade Forest. X is a layer object.
     2. `fit([X_train], y_train)`: Build a Cascade Forest from the training set. 
     3. `predict([X_test])`: Predict class for X_test.
-    4. `score`: Return the mean accuracy on the given test data and labels.
-- ### `Cascade Structure`:
+    4. `score`: Return the sore on the given test data and labels.
+
+- ### `Sliding window based scanner`:
+   
+    1. `transform_feature(X_train, y_train, X_test)`: Add a layer obeject into Cascade Forest. X is a layer object.
+
+- ### `Graph-based based scanner`:
+   
+    1. `graph_embedding(G1, X_train, y_train, X_test)`: Add a layer obeject into Cascade Forest. X is a layer object.
+
+
+
+    
     
     
 
