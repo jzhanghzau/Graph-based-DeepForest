@@ -141,9 +141,9 @@ print("Graph_based gcForest's accuracy :{:.2f} %".format(score * 100))
 ## Methods
 
 - ### `Layer`:
-       1. `add(**X)`: Add a classifier set into layer obeject. X is a classifier set, such as `X = {"crf1": clf1, "crf2": clf2}`.
+      1. `add(**X)`: Add a classifier set into layer obeject. X is a classifier set, such as `X = {"crf1": clf1, "crf2": clf2}`.
 - ### `Cascade Structure`:
-       1. `add()`:
+      1. `add()`:
     
 
 
